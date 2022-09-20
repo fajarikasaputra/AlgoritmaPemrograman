@@ -1,4 +1,4 @@
-// package Pertemuan 4;
+package Pertemuan4;// package Pertemuan 4;
 
 import java.util.Scanner;
 
