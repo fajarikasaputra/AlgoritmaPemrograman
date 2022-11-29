@@ -15,7 +15,7 @@ public class Siakad {
         mahasiswa[jumlahData] = new Mahasiswa();
         mahasiswa[jumlahData].setNim(nim);
         mahasiswa[jumlahData].setNama(nama);
-        jumlahData++;
+        jumlahData += 1;
     }
 
     public static void tampilData() {
@@ -27,6 +27,31 @@ public class Siakad {
         }
     }
 
+    public static void urutkanData() {
+        System.out.println("Pilih algoritma");
+        System.out.println("1. Exchange Sort");
+        System.out.print("\nAlgoritma = ");
+        int algo;
+        algo = scan.nextInt();
+        switch (algo) {
+            case 1:
+                exchangeSort();
+                break;
+        }
+    }
+
+    public static void exchangeSort() {
+        for (int x = 0; x < jumlahData; x++) {
+            for (int y = x + 1; y < jumlahData; y++) {
+                if (mahasiswa[x].getNim().compareTo(mahasiswa[y].getNim()) >= 1) {
+                    Mahasiswa temp = mahasiswa[x];
+                    mahasiswa[x] = mahasiswa[y];
+                    mahasiswa[y] = temp;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int option;
         Siakad siakad = new Siakad();
@@ -35,7 +60,8 @@ public class Siakad {
             System.out.println("Menu Siakad");
             System.out.println("1. Tambah Data");
             System.out.println("2. Lihat Data");
-            System.out.println("3. Keluar");
+            System.out.println("3. Urutkan data");
+            System.out.println("4. Keluar");
             System.out.print("Pilih menu = ");
             option = scan.nextInt();
             System.out.println();
@@ -47,6 +73,9 @@ public class Siakad {
                     tampilData();
                     break;
                 case 3:
+                    urutkanData();
+                    break;
+                case 4:
                     System.out.println("Terimakasih sudah mengunjung siakad");
                     System.exit(0);
             }
