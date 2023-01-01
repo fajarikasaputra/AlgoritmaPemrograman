@@ -307,36 +307,33 @@ public class Siakad {
         }
     }
 
-    public static String uas() {
-        int jarak = jumlahData;
-        int susut = 13;
-        int urut = 0;
-        Mahasiswa temp;
-
-        if (jumlahData != 0) {
-            do {
+    public static void uas() {
+        if (jumlahData == 0) {
+            System.out.println("Tidak ada data");
+        } else { // O(1)
+            int jarak = jumlahData - 1;
+            int susut = 13;
+            int urut = 0;
+            while (urut == 0) {
                 jarak = (jarak * 10) / susut;
-
                 if (jarak <= 1) {
                     jarak = 1;
                     urut = 1;
-                }
-
-                for (int i = 0; (i + jarak) < jumlahData; i++) {
-                    if (mahasiswa[i].getNim().compareTo(mahasiswa[i + jarak].getNim()) >= 1) {
-                        temp = mahasiswa[i];
-                        mahasiswa[i] = mahasiswa[i + jarak];
-                        mahasiswa[i + jarak] = temp;
-                        urut = 0;
+                    for (int i = 0; i + jarak < jumlahData; i++) {
+                        int temp2 = Integer.parseInt(mahasiswa[i].getNim());
+                        int temp3 = Integer.parseInt(mahasiswa[i + jarak].getNim());
+                        if (temp2 > (temp3)) {
+                            Mahasiswa temp = mahasiswa[i];
+                            mahasiswa[i] = mahasiswa[i + jarak];
+                            mahasiswa[i + jarak] = temp;
+                            urut = 0;
+                        }
                     }
                 }
-            } while (urut == 0);
-        } else {
-            return "Tidak Ada Data";
+            }
+            System.out.println("Data telah diurutkan silahkan tampilkan data");
+
         }
-
-        return "Data telah diurutkan, silakan tampilkan data!";
-
     }
 
     public static void main(String[] args) {
@@ -376,8 +373,7 @@ public class Siakad {
                     editData();
                     break;
                 case 7:
-                    String pesan = uas();
-                    System.out.println("\n" + pesan);
+                    uas();
                     break;
                 case 8:
                     System.out.println("Terimakasih sudah mengunjung siakad");
